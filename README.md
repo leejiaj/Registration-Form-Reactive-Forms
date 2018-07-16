@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 
+This project creates a Registration Form using Angular 6 (Reactive form).
+
 Reference: https://angular.io/guide/reactive-forms
 
 ## Development server
