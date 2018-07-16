@@ -1,0 +1,125 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label>First Name
+      <input class="form-control" type="text" formControlName="firstname">
+    </label>
+  </div>
+
+  <div *ngIf="!registrationForm.get('firstname').valid && registrationForm.get('firstname').touched" 
+  class="alert alert-danger"> First Name is required</div>
+
+  <div class="form-group">
+    <label>Last Name
+      <input class="form-control" type="text" formControlName="lastname">
+    </label>
+  </div>
+
+  <div *ngIf="!registrationForm.get('lastname').valid && registrationForm.get('lastname').touched" 
+  class="alert alert-danger"> Last Name is required</div>
+
+  <div class="form-group">
+    <label>Email Address
+      <input class="form-control" type="email" formControlName="emailaddress">
+    </label>
+  </div>
+
+  <div *ngIf="!registrationForm.get('emailaddress').valid && registrationForm.get('lastname').touched"
+    class="alert alert-danger">
+
+    <div *ngIf="registrationForm.get('emailaddress').errors.required">
+    Email Address is required
+    </div>  
+
+    <div *ngIf="registrationForm.get('emailaddress').errors?.email"> 
+    Email Address is invalid
+    </div> 
+
+  </div>
+
+  <div class="form-group">
+    <label>Phone Number
+      <input class="form-control" type="text" formControlName="phonenumber">
+    </label>
+  </div>
+
+  <div *ngIf="!registrationForm.get('phonenumber').valid && registrationForm.get('phonenumber').touched"
+  class="alert alert-danger">
+
+    <div *ngIf="registrationForm.get('phonenumber').errors.required">
+      Phone Number is required
+    </div>
+
+    <div *ngIf="registrationForm.get('phonenumber').errors.minlength">
+      Phone Number must be 10 digits
+    </div>
+
+    <div *ngIf="registrationForm.get('phonenumber').errors.maxlength">
+      Phone Number must be 10 digits
+    </div>
+
+    <div *ngIf="registrationForm.get('phonenumber').errors.pattern">
+      Phone Number should be only numbers
+    </div>
+
+    </div>
+
+  <div class="form-group">
+    <label>Password
+      <input class="form-control" type="password" formControlName="password">
+    </label>
+  </div>
+
+  <div *ngIf="!registrationForm.get('password').valid && registrationForm.get('password').touched"
+      class="alert alert-danger">
+
+    <div *ngIf="registrationForm.get('password').errors.required">
+      Password is required
+    </div>
+
+    <div *ngIf="registrationForm.get('password').errors.pattern"> 
+      Password should contain one uppercase letter, one lowercase letter and one number 
+      <br>Password should be 8 to 12 characters in length
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label>Confirm Password
+      <input class="form-control" type="password" formControlName="confirmpassword">
+    </label>
+  </div>
+
+  <div *ngIf="!registrationForm.get('confirmpassword').valid && registrationForm.get('confirmpassword').touched"
+    class="alert alert-danger">
+
+    <div *ngIf="registrationForm.get('confirmpassword').errors.required">
+      Confirm Password is required
+    </div>
+
+    <div *ngIf="registrationForm.get('confirmpassword').errors.pattern"> 
+      Password should contain one uppercase letter, one lowercase letter and one number 
+      <br>Password should be 8 to 12 characters in length
+    </div>
+  </div>
+
+  <!-- <div *ngIf="!this.passwordConfirming" class="alert alert-danger">
+  Password and Confirm Password should be equal
+  </div> -->
+
+  <!-- <re-captcha (resolved)="resolved($event)"></re-captcha> -->
+
+  <re-captcha (resolved)="resolved($event)"></re-captcha>
+
+
+  <div *ngIf="!this.captchaSuccess && submitted" class="alert alert-danger"> Validate Captcha</div>
+
+  <div style="margin-bottom: 1em">
+      <button type="submit" class="btn btn-success">Register</button> &nbsp;
+  </div>
+
+</form>
+<p>Form value: {{ registrationForm.value | json }}</p>
+<p>Form status: {{ registrationForm.status | json }}</p>
+
+
